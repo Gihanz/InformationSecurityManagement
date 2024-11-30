@@ -1,0 +1,67 @@
+en
+clock set 08:00:00 31 July 2017
+conf t
+clock timezone EST -5
+hostname SW-2
+enable secret class
+no ip domain-lookup
+
+vlan 10
+ name Workstation
+Vlan 20
+ name Voice
+vlan 30
+ name Servers
+vlan 99
+ name Mgmt
+exit
+
+interface vlan 10
+ no shut
+interface vlan 20
+ no shut
+interface vlan 30
+ no shut
+interface vlan 99
+ ip address 172.16.99.253 255.255.255.0
+ no shut
+exit
+
+inter range f0/1 - 8
+ switchport mode access
+ switchport access vlan 10
+ no shut
+inter range f0/9 - 16
+ switchport mode access
+ switchport access vlan 20
+ no shut
+inter range f0/17 - 23
+ switchport mode access
+ switchport access vlan 30
+ no shut
+inter range g0/1 - 2
+ switchport mode access
+ switchport access vlan 99
+ shut
+inter range g0/3 - 4
+ switchport mode access
+ switchport access vlan 99
+ shut
+inter f0/24
+ switchport mode trunk
+ no shut
+exit
+
+ip default-gateway 172.163.99.254
+
+banner motd ^C
+Unauthorized access is strictly prohibited. ^C
+line con 0
+ password cisco
+ logging synchronous
+ login
+line vty 0 15
+ password cisco
+ login
+ transport input all
+end

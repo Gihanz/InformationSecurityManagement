@@ -1,0 +1,60 @@
+!
+!             #Basic Config
+enable
+clock set 12:30:00 23 July 2018
+configure terminal
+clock timezone EST -5
+hostname SW1
+service password-encryption
+enable secret class
+no ip domain-lookup
+ip domain-name fanshawe.local
+banner motd #
+Unauthorized access is strictly prohibited. #
+!
+!             #Con - Vty  Connections
+line con 0
+ password cisco
+ login
+ logging synchronous
+ exec-timeout 240
+line vty 0 15
+ password cisco
+ login
+ transport input all
+ exec-timeout 240
+exit
+!
+!               #Vlans
+vlan 30
+ name Student
+vlan 99
+ name Maintenance
+exit
+!
+!               #Interface
+interface vlan 30
+ ip add 192.168.30.1 255.255.255.0
+ no shut
+inter vlan 99
+ ip add 192.168.99.1 255.255.255.0
+ no shut
+!
+inter rang f0/1 - 24, g0/1 - 2
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+inter f0/24
+ switchport access vlan 30
+ no shut
+inter f0/10
+ no switchport mode access
+ no switchport access vlan 99
+ switchport mode trunk
+ no shut
+exit
+
+ip default-gateway 192.168.99.254
+
+
+

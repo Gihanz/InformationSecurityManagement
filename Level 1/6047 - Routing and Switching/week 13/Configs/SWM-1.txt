@@ -1,0 +1,65 @@
+en
+clock set 08:00:00 31 July 2017
+conf t
+clock timezone EST -5
+hostname SWM-1
+enable secret class
+no ip domain-lookup
+
+vlan 10
+ name Workstation
+Vlan 20
+ name Voice
+vlan 30
+ name Servers
+vlan 99
+ name Mgmt
+exit
+
+interface vlan 10
+ ip address 172.16.10.254 255.255.255.0
+ no shut
+interface vlan 20
+ ip address 172.16.20.254 255.255.255.0
+ no shut
+interface vlan 30
+ ip address 172.16.30.254 255.255.255.0
+ no shut
+interface vlan 99
+ ip address 172.16.99.254 255.255.255.0
+ no shut
+exit
+
+inter range f0/1 - 8
+ switchport mode access
+ switchport access vlan 10
+ no shut
+inter range f0/9 - 16
+ switchport mode access
+ switchport access vlan 20
+ no shut
+inter range f0/17 - 22
+ switchport mode access
+ switchport access vlan 30
+ no shut
+inter range g0/1 - 2
+ switchport mode access
+ switchport access vlan 99
+ shut
+inter range g0/3 - 4
+ switchport mode access
+ switchport access vlan 99
+ shut
+
+
+banner motd ^C
+Unauthorized access is strictly prohibited. ^C
+line con 0
+ password cisco
+ logging synchronous
+ login
+line vty 0 15
+ password cisco
+ login
+ transport input all
+end

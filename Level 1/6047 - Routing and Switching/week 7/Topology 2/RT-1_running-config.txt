@@ -1,0 +1,99 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname RT-1
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+clock timezone EST -5
+!
+!
+!
+!
+no ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2901/K9 sn FTX15246X6A
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 10.10.10.10 255.255.255.255
+ ipv6 address 2001:DB8:ACAD:50:10:10:10:10/128
+!
+interface GigabitEthernet0/0
+ ip address 192.168.10.254 255.255.255.0
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:ACAD:10::254/64
+!
+interface GigabitEthernet0/1
+ ip address 192.168.20.254 255.255.255.0
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:ACAD:20::254/64
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+no cdp run
+!
+banner motd #
+Unauthorized access is strickly prohibited.#
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+line vty 5 15
+ password 7 0822455D0A16
+ login
+!
+!
+!
+end
+

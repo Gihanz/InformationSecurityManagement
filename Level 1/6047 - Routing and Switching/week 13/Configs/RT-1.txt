@@ -1,0 +1,34 @@
+en
+clock set 08:00:00 31 July 2017
+conf t
+clock timezone EST -5
+hostname RT-1
+enable secret class
+no ip domain-lookup
+
+  
+interface GigabitEthernet0/0
+ no shut
+interface GigabitEthernet0/1
+ ip address 172.17.1.26 255.255.255.252
+ no shut
+interface lo4
+ ip address 172.16.40.1 255.255.255.0
+ no shut
+interface lo5
+ ip address 172.16.50.1 255.255.255.0
+ no shut
+exit
+
+
+banner motd ^C
+Unauthorized access is strictly prohibited. ^C
+line con 0
+ password cisco
+ logging synchronous
+ login
+line vty 0 15
+ password cisco
+ login
+ transport input all
+end

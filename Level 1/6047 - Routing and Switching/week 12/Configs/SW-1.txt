@@ -1,0 +1,99 @@
+!
+!
+!             # Basic Config
+enable
+clock set 12:30:00 06 Aug 2018
+configure terminal
+clock timezone EST -5
+hostname SW-1
+service password-encryption
+enable secret class
+no ip domain-lookup
+ip domain-name fanshawe.local
+banner motd #
+Unauthorized access is strictly prohibited. #
+!
+!
+!             # Con - Vty  Connections
+line con 0
+ password cisco
+ login
+ logging synchronous
+ exec-timeout 240
+line vty 0 15
+ password cisco
+ login
+ transport input all
+ exec-timeout 240  
+exit
+!
+!
+!				# Vlans
+!				# Names
+vlan 10
+ name workstation
+Vlan 20
+ name Voice
+vlan 30
+ name Servers
+vlan 99
+ name Mgmt
+exit
+!
+!
+!				# Vlan - Interfaces
+interface vlan 10
+ no shut
+interface vlan 20
+ no shut
+interface vlan 30
+ no shut
+interface vlan 99
+ ip address 172.16.99.200 255.255.255.0
+ no shut
+exit
+!
+!
+!				# Routing
+ip routing
+ip route 0.0.0.0 0.0.0.0 172.16.99.254
+!
+!
+!				# Interfaces
+inter f0/24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ no shut
+inter range f0/1 - 23, g0/1 - 2
+ switchport mode access
+ switchport access vlan 99
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shut
+inter range f0/1,f0/3,f0/5
+ switchport mode access
+ switchport access vlan 20
+ no shut
+inter range f0/7,f0/9,f0/11
+ switchport mode access
+ switchport access vlan 20
+ no shut
+inter range f0/8,f0/10,f0/12
+ switchport mode access
+ switchport access vlan 10
+ no shut
+inter range f0/2,f0/4,f0/6
+ switchport mode access
+ switchport access vlan 10
+ no shut
+inter range f0/14,f0/16,f0/18
+ switchport mode access
+ switchport access vlan 30
+ no shut
+inter range f0/20,f0/22
+ switchport mode access
+ switchport access vlan 30
+ no shut
+exit
+!
+

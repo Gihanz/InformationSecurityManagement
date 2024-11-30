@@ -1,0 +1,27 @@
+!
+!             #Basic Config
+en
+!
+configure terminal
+ipv6 unicast-routing
+!
+!
+!               #Interface
+interface GigabitEthernet0/0
+ ipv6 add 2001:db8:acad:2::2/64
+ no shut
+interface GigabitEthernet0/1
+ ipv6 add 2001:db8:acad:1::254/64
+ no shut
+interface Lo10
+ ipv6 add 2001:db8:acad:100::1/64
+ no shut
+exit
+
+
+
+ 
+ 
+
+
+

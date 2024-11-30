@@ -1,0 +1,58 @@
+!
+!
+!             # Basic Config
+enable
+clock set 12:30:00 06 Aug 2018
+configure terminal
+clock timezone EST -5
+hostname RT-1
+service password-encryption
+enable secret class
+no ip domain-lookup
+ip domain-name fanshawe.local
+banner motd #
+Unauthorized access is strictly prohibited. #
+!
+!
+!             # Con - Vty  Connections
+line con 0
+ password cisco
+ login
+ logging synchronous
+ exec-timeout 240
+line vty 0 15
+ password cisco
+ login
+ transport input all
+ exec-timeout 240
+exit
+!
+!
+!               # Interface
+interface GigabitEthernet0/0
+ no ip address
+ no shut
+ interface GigabitEthernet0/0.10
+  encapsulation dot1Q 10
+  ip address 172.16.10.254 255.255.255.0
+  no shut
+ interface GigabitEthernet0/0.20
+  encapsulation dot1Q 20
+  ip address 172.16.20.254 255.255.255.0
+  no shut
+ interface GigabitEthernet0/0.30
+  encapsulation dot1Q 30
+  ip address 172.16.30.254 255.255.255.0
+  no shut
+ interface GigabitEthernet0/0.99
+  encapsulation dot1Q 99
+  ip address 172.16.99.254 255.255.255.0
+  no shut
+interface lo 40
+ ip address 172.16.40.1 255.255.255.0
+ no shut
+interface lo 50 
+ ip address 172.16.50.1 255.255.255.0
+ no shut
+exit
+!

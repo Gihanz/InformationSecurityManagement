@@ -1,0 +1,22 @@
+!
+!             #Basic Config
+en
+conf t
+!
+ipv6 unicast-routing
+!
+!               #Interface
+interface GigabitEthernet0/0
+ ipv6 address 2001:db8:acad:2::1/64
+ no shut
+interface Lo1
+ ipv6 address 2001:db8:acad:10::1/64
+ no shut
+interface Lo2
+ ipv6 address 2001:db8:acad:20::1/64
+ no shut
+interface Lo3
+ ipv6 address 2001:db8:acad:30::1/64
+ no shut
+ exit
+

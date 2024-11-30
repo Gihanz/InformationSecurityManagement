@@ -1,0 +1,17 @@
+!
+!				#Start IPv6 routing
+ipv6 unicast-routing 
+!
+!               #Interface
+interface GigabitEthernet0/1
+ ipv6 address 2001:db8:acad:101::1/64
+ no shut
+interface GigabitEthernet0/0
+ ipv6 address 2001:db8:acad:102::5/64
+ no shut
+interface Lo3
+ ipv6 address 2001:db8:acad:3::1/64
+ no shut
+exit
+
+

@@ -1,0 +1,65 @@
+!
+!
+!               # IPv6
+ipv6 unicast-routing
+!
+!
+!               # DHCP Pools
+
+!
+!
+!               # Interface
+interface GigabitEthernet0/0.10
+ ipv6 address 2001:acad:db8:10::254/64
+ ipv6 address FE80::1 link-local
+ ipv6 dhcp server Workstation
+interface GigabitEthernet0/0.20
+ ipv6 address 2001:acad:db8:20::254/64
+ ipv6 address FE80::1 link-local
+ ipv6 dhcp server Voice 
+interface GigabitEthernet0/0.30
+ ipv6 address 2001:acad:db8:30::254/64
+ ipv6 address FE80::1 link-local
+ ipv6 dhcp server Servers 
+interface GigabitEthernet0/0.99
+ encapsulation dot1Q 99
+ ipv6 address 2001:acad:db8:99::254/64
+ no shut
+interface lo 40
+ ipv6 address 2001:acad:db8:40::1/64
+ no shut
+interface lo 50 
+ ipv6 address 2001:acad:db8:50::1/64
+ no shut
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
