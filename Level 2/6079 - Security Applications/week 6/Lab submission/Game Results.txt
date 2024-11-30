@@ -1,0 +1,12 @@
+Name: Gihan Shamike Liyanage
+StudentNo: 1142192
+Course: INFO6079
+Date: SUMMER WEEK 6 2023
+
+23 is too low. Try again.
+34 is too low. Try again.
+56 is too low. Try again.
+78 is too low. Try again.
+34 is too low. Try again.
+Maximum number of guesses exceeded!
+The random number is: 84
