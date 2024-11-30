@@ -1,0 +1,105 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname HQRTR1
+!
+login block-for 60 attempts 3 within 60
+!
+!
+enable secret 5 $1$mERr$FSEuhn11SWwtwi5g8J5E50
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username gliyanage187787 privilege 15 secret 5 $1$mERr$xsQ.nRJWhWjxOt78kdg8k.
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 10.44.100.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ ip address 10.2.77.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Serial0/1/0
+ ip address 99.45.23.1 255.255.255.0
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 172.16.100.0 255.255.255.0 10.2.77.1 
+ip route 0.0.0.0 0.0.0.0 99.45.23.2 
+!
+ip flow-export version 9
+!
+!
+ip access-list extended sl_def_acl
+ deny tcp any any eq telnet
+ deny tcp any any eq www
+ deny tcp any any eq 22
+ permit tcp any any eq 22
+!
+banner login $
+WARNING: This system is monitored, and all actions will be recorded. Unauthorized or 
+improper use of this system may result in civil charges or criminal penalties. By continuing to 
+use this system you indicate your consent to these terms and conditions.
+$
+banner motd #
+Unauthorized access is strickly prohibited.#
+!
+!
+!
+!
+line con 0
+ logging synchronous
+ login local
+!
+line aux 0
+!
+line vty 0 4
+ exec-timeout 2 30
+ login local
+!
+!
+ntp authentication-key 1 md5 081545430C2E0C0417 7
+ntp authenticate
+ntp trusted-key 1
+ntp server 15.15.15.15
+!
+end
+

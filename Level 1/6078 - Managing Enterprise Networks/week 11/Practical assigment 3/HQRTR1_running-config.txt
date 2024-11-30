@@ -1,0 +1,116 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname g_liyanage187787-HQRTR1
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+class-map type inspect match-all LANTraffic
+ match access-group 195
+class-map type inspect match-any EXTTraffic
+ match protocol http
+class-map type inspect match-any SRVTraffic
+ match protocol dns
+!
+policy-map type inspect OUTBOUND
+ class type inspect LANTraffic
+  inspect
+!
+policy-map type inspect INBOUND
+ class type inspect EXTTraffic
+  inspect
+ class type inspect SRVTraffic
+  inspect
+!
+!
+!
+zone security LAN
+zone security EXT
+zone security SRV
+zone-pair security LAN2SRV source LAN destination SRV
+ service-policy type inspect OUTBOUND
+zone-pair security LAN2EXT source LAN destination EXT
+ service-policy type inspect OUTBOUND
+zone-pair security EXT2SRV source EXT destination SRV
+ service-policy type inspect INBOUND
+zone-pair security SRV2EXT source SRV destination EXT
+ service-policy type inspect INBOUND
+zone-pair security SRV2LAN source SRV destination LAN
+ service-policy type inspect INBOUND
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 10.44.100.1 255.255.255.0
+ zone-member security SRV
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ ip address 10.2.77.2 255.255.255.252
+ zone-member security LAN
+ duplex auto
+ speed auto
+!
+interface Serial0/1/0
+ ip address 99.45.23.1 255.255.255.0
+ zone-member security EXT
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 69.83.22.2 
+ip route 192.168.10.0 255.255.255.0 200.1.1.1 
+ip route 172.16.100.0 255.255.255.0 10.2.77.1 
+ip route 0.0.0.0 0.0.0.0 99.45.23.2 
+!
+ip flow-export version 9
+!
+!
+access-list 195 permit ip 172.16.100.0 0.0.0.255 any
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
