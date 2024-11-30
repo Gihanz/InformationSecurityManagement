@@ -1,0 +1,98 @@
+enable
+!
+clock set 12:10:00 14 May 2022
+!
+configure terminal
+!
+clock timezone EST -5
+!
+hostname RT-1
+!
+service password-encryption
+!
+enable secret class
+!
+no ip domain-lookup
+!
+ip domain-name fanshawe.local
+!
+username admin privilege 15 secret sshadmin
+!
+ip dhcp excluded-address 192.168.1.1 192.168.1.30
+ip dhcp excluded-address 192.168.1.200 192.168.1.254
+ip dhcp excluded-address 192.168.10.1 192.168.10.30
+ip dhcp excluded-address 192.168.10.200 192.168.10.254
+ip dhcp excluded-address 192.168.20.1 192.168.20.30
+ip dhcp excluded-address 192.168.20.200 192.168.20.254
+ip dhcp excluded-address 192.168.30.1 192.168.30.30
+ip dhcp excluded-address 192.168.30.200 192.168.30.254
+!
+ip dhcp pool mang
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.254
+ dns-server 8.8.8.8
+ domain-name fanshawe.local
+ip dhcp pool student
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.254
+ dns-server 8.8.8.8
+ domain-name fanshawe.local
+ip dhcp pool faculty
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.254
+ dns-server 8.8.8.8
+ domain-name fanshawe.local
+ip dhcp pool Server
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.254
+ dns-server 8.8.8.8
+ domain-name fanshawe.local
+exit
+!
+inter g0/0
+ no ip add
+ no shut
+inter g0/0.1
+ description Management network
+ encapsulation dot1q 99
+ ip add 192.168.1.254 255.255.255.0
+ no shut
+inter g0/0.10
+ description Student network
+ encapsulation dot1q 10
+ ip add 192.168.10.254 255.255.255.0
+ no shut
+inter g0/0.20
+ description Faculty network
+ encapsulation dot1q 20
+ ip add 192.168.20.254 255.255.255.0
+ no shut
+inter g0/0.30
+ description Server network
+ encapsulation dot1q 30
+ ip add 192.168.30.254 255.255.255.0
+ no shut
+inter lo1
+ ip add 10.10.10.10 255.255.255.255
+ no shut
+exit
+!
+banner motd #
+Unauthorized access is strictly prohibited. #
+!
+line con 0
+ password cisco
+ login
+ logging synchronous
+ exec-timeout 240
+ exit
+ !
+line vty 0 15
+ password cisco
+ login local
+ transport input all
+ exec-timeout 240
+ exit
+!
+crypto key generate rsa
+1024
