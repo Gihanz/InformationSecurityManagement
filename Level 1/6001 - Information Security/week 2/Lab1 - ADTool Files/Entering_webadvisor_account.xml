@@ -1,0 +1,129 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Entering webadvisor account</label>
+		<node refinement="disjunctive">
+			<label>username</label>
+			<node refinement="disjunctive">
+				<label>pishing</label>
+				<node refinement="conjunctive" switchRole="yes">
+					<label>anti spam software</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>keylogging</label>
+				<node refinement="conjunctive" switchRole="yes">
+					<label>anti virus</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>find note</label>
+				<node refinement="conjunctive" switchRole="yes">
+					<label>keep only in mind</label>
+					<node refinement="conjunctive" switchRole="yes">
+						<label>getting forcefully</label>
+					</node>
+				</node>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>password</label>
+			<node refinement="conjunctive">
+				<label>pishing</label>
+				<node refinement="conjunctive" switchRole="yes">
+					<label>use anti spam</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>keylogging</label>
+				<node refinement="conjunctive" switchRole="yes">
+					<label>updated anti virus</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>find note</label>
+				<node refinement="conjunctive" switchRole="yes">
+					<label>keep only in mind</label>
+					<node refinement="conjunctive" switchRole="yes">
+						<label>getting forcefully</label>
+					</node>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>guess password</label>
+				<node refinement="disjunctive" switchRole="yes">
+					<label>strong password</label>
+					<node refinement="disjunctive" switchRole="yes">
+						<label>advanced keygen</label>
+					</node>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>use password reset</label>
+				<node refinement="disjunctive">
+					<label>username / student id</label>
+					<node refinement="disjunctive">
+						<label>steal id card</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>security questions answers</label>
+					<node refinement="disjunctive">
+						<label>guess answers</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>find note</label>
+						<node refinement="disjunctive" switchRole="yes">
+							<label>keep only in mind</label>
+						</node>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>security code</label>
+					<node refinement="disjunctive">
+						<label>access to email</label>
+						<node refinement="disjunctive">
+							<label>email username</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>email password</label>
+							<node refinement="disjunctive">
+								<label>pishing</label>
+								<node refinement="disjunctive" switchRole="yes">
+									<label>anti spam</label>
+								</node>
+							</node>
+							<node refinement="disjunctive">
+								<label>keylogger</label>
+								<node refinement="disjunctive" switchRole="yes">
+									<label>anti virus</label>
+								</node>
+							</node>
+							<node refinement="disjunctive">
+								<label>guess password</label>
+								<node refinement="disjunctive" switchRole="yes">
+									<label>strong password</label>
+								</node>
+							</node>
+							<node refinement="disjunctive" switchRole="yes">
+								<label>2 fac auth</label>
+								<node refinement="disjunctive" switchRole="yes">
+									<label>get auth code</label>
+									<node refinement="disjunctive">
+										<label>steal device</label>
+									</node>
+									<node refinement="disjunctive">
+										<label>malware</label>
+										<node refinement="disjunctive" switchRole="yes">
+											<label>virus guard</label>
+										</node>
+									</node>
+								</node>
+							</node>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>
