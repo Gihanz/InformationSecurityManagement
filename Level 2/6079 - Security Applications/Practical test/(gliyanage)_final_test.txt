@@ -1,0 +1,52 @@
+# =========================================================
+#	NAME:			GIHAN SHAMIKE LIYANAGE
+#	Student ID:		1142109
+#	DATE:			08/08/2023
+# =========================================================
+
+# =================================================================================
+Explain the use of Sockets
+
+Sockets facilitate communication among computers across a network.
+It allows programs to communicate with each other by sending and receiving data.
+The socket module provides an interface to work with sockets and network communication in Python.
+
+# =================================================================================
+1. Why do we need a Client and Server?
+
+The client-server model is a common architecture in networking.
+
+Server: The server is a program that waits and listens for client requests.
+		Clients can request services or resources from it.
+		Servers are built to be always on and responsive, supporting several client connections at the same time.
+		
+Client: A client is a programme that connects to a server and requests services or resources.
+		Clients make requests to servers and receive responses.
+		
+# =================================================================================	
+2. Why are IP Addresses important?
+
+IP addresses are critical in networking because they uniquely identify networked devices.
+An IP address is a set of integers that serve as an address for routing data packets across a network from one device to another.
+
+Clients connect to servers using their unique IP address.
+This address enables clients to route their network requests to the appropriate server. 
+Similarly, clients also have IP addresses that servers use to send responses back to the correct client.
+
+# =================================================================================
+3. How are errors handled?
+
+Errors can be arised during a socket communication for a variety of reasons, including network issues, incorrectly configured settings or server unavailability.
+
+Exceptions raised during socket communication can be caught using try-except blocks.
+Return values from socket functions are checked for problems, such as failed connection attempts.
+Timeouts can be implemented to prevent the program from hanging indefinitely when waiting for a response.
+
+# =================================================================================
+4. Why is the SERVER always listening?
+
+In the client-server model, the server must be "always listening" for incoming client connection requests.
+This is due to the fact that clients may wish to establish a connection at any time, and the server must be prepared to respond quickly.
+When a client sends a request, the server's code is triggered to handle that particular request.
+
+# =================================================================================
